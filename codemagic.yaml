@@ -1,0 +1,16 @@
+workflows:
+  android:
+    name: Android Build
+    max_build_duration: 60
+    instance_type: mac_m1
+    environment:
+      vars:
+        ANDROID_HOME: "$HOME/Android/Sdk"
+    scripts:
+      - |
+        # Install dependencies
+        npm install
+        # Build the Android APK
+        cordova build android --release
+    artifacts:
+      - build/android/Release/*.apk
